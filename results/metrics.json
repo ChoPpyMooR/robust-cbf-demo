@@ -1,0 +1,83 @@
+{
+  "description": "Illustrative CSTR-like discrete-time model; not a validated reactor model.",
+  "config": {
+    "dt": 0.1,
+    "steps": 80,
+    "initial_state": [
+      1.8,
+      95.0
+    ],
+    "temperature_limit": 95.0,
+    "input_bounds": [
+      0.0,
+      4.0
+    ],
+    "model_error_bound_on_omega": 0.75,
+    "alpha_gain": 0.6,
+    "omega": [
+      [
+        0.0,
+        2.0
+      ],
+      [
+        60.0,
+        95.0
+      ]
+    ]
+  },
+  "termination_policy": "Stop on safety/domain exit or QP failure; no fallback.",
+  "controllers": {
+    "no_filter": {
+      "status": "safety_violation",
+      "steps_completed": 1,
+      "requested_steps": 80,
+      "min_h": -0.7832006718680304,
+      "max_T": 95.78320067186803,
+      "violation_samples": 1,
+      "temperature_excess_sample_sum": 0.7832006718680304,
+      "control_squared_sum": 0.016900000000000002,
+      "control_squared_integral": 0.0016900000000000003,
+      "message": "Temperature limit exceeded; run stopped."
+    },
+    "nominal_cbf": {
+      "status": "safety_violation",
+      "steps_completed": 1,
+      "requested_steps": 80,
+      "min_h": -0.6477809071123062,
+      "max_T": 95.6477809071123,
+      "violation_samples": 1,
+      "temperature_excess_sample_sum": 0.6477809071123062,
+      "control_squared_sum": 0.38742596187143924,
+      "control_squared_integral": 0.03874259618714393,
+      "message": "Temperature limit exceeded; run stopped."
+    },
+    "robust_cbf": {
+      "status": "completed",
+      "steps_completed": 80,
+      "requested_steps": 80,
+      "min_h": 0.0,
+      "max_T": 95.0,
+      "violation_samples": 0,
+      "temperature_excess_sample_sum": 0.0,
+      "control_squared_sum": 22.743540719385944,
+      "control_squared_integral": 2.2743540719385944,
+      "message": "Full simulation horizon completed."
+    }
+  },
+  "boundary_probe": {
+    "initial_state": [
+      2.0,
+      95.0
+    ],
+    "status": "infeasible",
+    "steps_completed": 0,
+    "requested_steps": 80,
+    "min_h": 0.0,
+    "max_T": 95.0,
+    "violation_samples": 0,
+    "temperature_excess_sample_sum": 0.0,
+    "control_squared_sum": 0.0,
+    "control_squared_integral": 0.0,
+    "message": "CBF constraint cannot be met within input limits."
+  }
+}
